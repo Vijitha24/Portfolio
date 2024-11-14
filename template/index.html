@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>JohnDoe Landing page | Free Bootstrap 4.3.x landing page</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/themify-icons/css/themify-icons.css' %}">
+    <!-- Bootstrap + JohnDoe main styles -->
+	<link rel="stylesheet" href=" {% static 'assets/css/johndoe.css' %}">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" >
+    <header class="header">
+        <div class="container">
+
+            {% for obj in portfolios %}
+            <div class="header-content">
+                <h4 class="header-subtitle" > Hello, I am </h4>
+                <h1 class="header-title" style=" font-size: 40px"> {{ obj.name }} </h1>
+                {% for obj in abouts %}
+                <h6 class="header-mono" >{{ obj.title }}</h6>
+
+                <p></p>
+                {% endfor %}
+            </div>
+             {% endfor %}
+        </div>
+    </header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+        <div class="container">
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link">Resume</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav brand">
+                     {% for obj in abouts %}
+                    <img  style="width:200px;"    src="{{obj.image.url}}" alt="" class="brand-img">
+
+
+                    <li class="brand-txt">
+                        <h5 class="brand-title">Vijitha V</h5>
+                        <div class="brand-subtitle">{{ obj.title }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#portfolio" class="nav-link">Project</a>
+                    </li>
+
+                    <li class="nav-item last-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item last-item">
+                         <a class="nav-link" href="{% url 'logout'  %}" style="color:black;"><b>Logout
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div id="about" class="row about-section">
+            {% for obj in abouts %}
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Who am I ?</h3>
+                <span class="line mb-5"></span>
+                <h5 class="mb-3">{{ obj.title }}</h5>
+                <p class="mt-20">{{ obj.description }}</p>
+            </div>
+            {% endfor  %}
+
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Personal Info</h3>
+                <span class="line mb-5"></span>
+                {% for obj in portfolios %}
+                <ul class="mt40 info list-unstyled">
+                    <li><span>Birthdate</span> : {{ obj.birthdate }}</li>
+                    <li><span>Email</span> : {{ obj.email }} </li>
+                    <li><span>Phone</span> : {{ obj.contact_number }} </li>
+                    <li><span>Address</span> :  {{ obj.address}} </li>
+                </ul>
+                {% endfor %}
+
+            </div>
+
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">My Expertise</h3>
+                <span class="line mb-5"></span>
+
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><i class="ti-paint-bucket icon-lg"></i></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>Web Development</h6>
+                        <p class="subtitle"> creating, building, and maintaining of websites. It includes aspects such as web design, web publishing, web programming, and database management. It is the creation of an application that works over the internet </p>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Resume Section-->
+    <section class="section" id="resume">
+        <div class="container">
+            <h2 class="mb-5"><span class="text-danger">My</span> Resume</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="mt-2">
+                                <h4>Expertise</h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        {% for obj in experiences %}
+                        <div class="card-body">
+                            <h6 class="title text-danger"> {{ obj.start_date }} - {{ obj.end_date }} </h6>
+                            <P> {{obj.job_title}} </P>
+                            <P class="subtitle"> {{obj.description }} </P>
+                            <hr>
+
+
+                        </div>
+                         {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="mt-2">
+                                <h4>Education</h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        {% for obj in educations %}
+                        <div class="card-body">
+                            <h6 class="title text-danger"> {{ obj.graduation_year }} </h6>
+                            <P>{{ obj.degree }}</P>
+                            <P class="subtitle"> {{ obj.institution }} </P>
+                           
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="pull-left">
+                                <h4 class="mt-2">Skills</h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        {% for obj in skills %}
+                        <div class="card-body pb-2">
+                           <h6> {{ obj.skill }} </h6>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+
+                        </div>
+                        {% endfor  %}
+                    </div>
+                    <div class="card">
+                       <div class="card-header">
+                            <div class="pull-left">
+                                <h4 class="mt-2"> Certifications </h4>
+                                <span class="line"></span>  
+                            </div>
+                        </div>
+                        {% for obj in certificates %}
+                        <div class="card-body pb-2">
+                           <div class="card-body">
+                            <h6 class="title text-danger"> {{ obj.date_issued }} </h6>
+                            <P>{{ obj.title }}</P>
+                            <P class="subtitle"> {{ obj.issuing_organization }} </P>
+
+                        </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section bg-custom-gray" id="portfolio">
+        <div class="container">
+            <h1 class="mb-5"><span class="text-danger">My</span> Project</h1>
+            <div class="portfolio">
+                <div class="filters">
+
+                </div>
+                <div class="portfolio-container"> 
+                    <div class="col-md-6 col-lg-6 web new">
+                        {% for obj in projects %}
+                        <div class="portfolio-item">
+                            <img src=" {{obj.image.url}} " class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="card-body pb-2">
+                           <div class="card-body">
+                            <h6 class="title text-danger"> {{ obj.title }} </h6>
+                            <P>{{ obj.description }}</P>
+                            <P class="subtitle"> LINK :  {{ obj.url }} </P>
+
+                        </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    </div>
+                    </div>
+                </div> 
+            </div>  
+        </div>            
+    </section>
+     <section class="section bg-dark py-5">
+        <div class="container text-center">
+            <h2 class="text-light mb-5 font-weight-normal">I Am Available For FreeLance</h2>
+            <button class="btn bg-primary w-lg" >Hire me</button>
+        </div>
+    </section>
+
+    <!-- End of portfolio section -->
+    {% for obj in portfolios %}
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <h4 class="contact-title">Get in touch</h4>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-mobile icon-md"></i>
+                            </div>
+                            <div class="col-10 ">
+                                <h6 class="d-inline">Phone : <br> <span class="text-muted"> {{ obj.contact_number }} </span></h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-map-alt icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Address :<br> <span class="text-muted"> {{ obj.address }} </span></h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-envelope icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Email :<br> <span class="text-muted"> {{ obj.email }} </span></h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+     {% endfor %}
+    <footer class="footer py-3">
+        <div class="container">
+            <p class="small mb-0 text-light">
+                &copy; <script>document.write(new Date().getFullYear())</script> Created  By <a ><span class="text-danger" title="Bootstrap 4 Themes and Dashboards"> Robust user profile management system</span></a>
+            </p>
+        </div>
+    </footer>
+
+	<!-- core  -->
+
+	<!-- core  -->
+    <script src="{% static 'assets/vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'assets/vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'assets/vendors/bootstrap/bootstrap.affix.js' %}"></script>
+
+    <!-- Isotope  -->
+    <script src="{% static 'assets/vendors/isotope/isotope.pkgd.js' %}"></script>
+
+    <!-- Google mpas -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- JohnDoe js -->
+    <script src="{% static 'assets/js/johndoe.js' %}"></script>
+
+</body>
+</html>
